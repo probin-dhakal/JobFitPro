@@ -2,9 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Resume = require("../models/Resume");
 
-// @desc    Create a new resume
-// @route   POST /api/resumes
-// @access  Private
+//create resume
 const createResume = async (req, res) => {
   try {
     const { title } = req.body;
@@ -87,9 +85,7 @@ const createResume = async (req, res) => {
   }
 };
 
-// @desc    Get all resumes for logged-in user
-// @route   GET /api/resumes
-// @access  Private
+//get resume for logged in user
 const getUserResumes = async (req, res) => {
   try {
     const resumes = await Resume.find({ userId: req.user._id }).sort({
@@ -103,9 +99,7 @@ const getUserResumes = async (req, res) => {
   }
 };
 
-// @desc    Get single resume by ID
-// @route   GET /api/resumes/:id
-// @access  Private
+//get some specific resume of logged in user
 const getResumeById = async (req, res) => {
   try {
     const resume = await Resume.findOne({ _id: req.params.id, userId: req.user._id });
@@ -122,9 +116,8 @@ const getResumeById = async (req, res) => {
   }
 };
 
-// @desc    Update a resume
-// @route   PUT /api/resumes/:id
-// @access  Private
+
+//update existing resume
 const updateResume = async (req, res) => {
   try {
     const resume = await Resume.findOne({
@@ -150,9 +143,7 @@ const updateResume = async (req, res) => {
   }
 };
 
-// @desc    Delete a resume
-// @route   DELETE /api/resumes/:id
-// @access  Private
+//delete resume of logged in user
 const deleteResume = async (req, res) => {
   try {
     const resume = await Resume.findOne({

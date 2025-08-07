@@ -1,6 +1,5 @@
 export const BASE_URL = "http://localhost:8000";
 
-// utils/apiPaths.js
 export const API_PATHS = {
   AUTH: {
     REGISTER: "/api/auth/register", // Signup 
@@ -20,4 +19,7 @@ export const API_PATHS = {
   IMAGE: {
     UPLOAD_IMAGE: "api/auth/upload-image",
   },
+  ATS: {
+    CHECK_SCORE: "/api/ats/ats-score", 
+  }
 };

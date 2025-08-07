@@ -7,9 +7,7 @@ const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
+//register user
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, profileImageUrl } = req.body;
@@ -45,9 +43,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
+//login user
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -76,9 +72,8 @@ const loginUser = async (req, res) => {
   }
 };
 
-// @desc    Get user profile
-// @route   GET /api/auth/profile
-// @access  Private (Requires JWT)
+
+//get user profile data
 const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
