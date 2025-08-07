@@ -84,7 +84,7 @@ Follow these steps to set up and run the project locally:
     
 ```
 bash
-    git clone <repository_url>
+    git clone https://github.com/probin-dhakal/JobFitPro.git
     cd resume-builder
     
 ```
