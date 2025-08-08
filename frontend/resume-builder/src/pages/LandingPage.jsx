@@ -272,7 +272,7 @@ const AnalysisLoadingSkeleton = ({ stage }) => {
 };
 
 const LandingPage = () => {
-  const BASE_URL = "http://localhost:8000";
+  const BASE_URL = "https://jobfitpro-mtzp.onrender.com";
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
