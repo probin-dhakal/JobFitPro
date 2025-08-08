@@ -10,7 +10,7 @@ const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -22,13 +22,13 @@ const Login = ({ setCurrentPage }) => {
       setError("Please enter a valid email address.");
       return;
     }
-
     if (!password) {
       setError("Please enter the password");
       return;
     }
 
     setError("");
+    setIsLoading(true);
 
     //Login API Call
     try {
@@ -38,7 +38,6 @@ const Login = ({ setCurrentPage }) => {
       });
 
       const { token } = response.data;
-
       if (token) {
         localStorage.setItem("token", token);
         updateUser(response.data);
@@ -50,6 +49,8 @@ const Login = ({ setCurrentPage }) => {
       } else {
         setError("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -59,7 +60,6 @@ const Login = ({ setCurrentPage }) => {
       <p className="text-xs text-slate-700 mt-[5px] mb-6">
         Please enter your details to log in
       </p>
-
       <form onSubmit={handleLogin}>
         <Input
           value={email}
@@ -67,29 +67,33 @@ const Login = ({ setCurrentPage }) => {
           label="Email Address"
           placeholder="john@example.com"
           type="text"
+          disabled={isLoading}
         />
-
         <Input
           value={password}
           onChange={({ target }) => setPassword(target.value)}
           label="Password"
           placeholder="Min 8 Characters"
           type="password"
+          disabled={isLoading}
         />
-
         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-
-        <button type="submit" className="btn-primary">
-          LOGIN
+        <button 
+          type="submit" 
+          className="btn-primary"
+          disabled={isLoading}
+        >
+          {isLoading ? "LOGGING IN..." : "LOGIN"}
         </button>
-
         <p className="text-[13px] text-slate-800 mt-3">
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <button
+            type="button"
             className="font-medium text-primary underline cursor-pointer"
             onClick={() => {
               setCurrentPage("signup");
             }}
+            disabled={isLoading}
           >
             SignUp
           </button>
