@@ -12,7 +12,7 @@ const app = express();
 // Middleware to handle CORS
 app.use(
   cors({
-    origin:"https://job-fit-pro-ochre.vercel.app/",
+    origin:"https://job-fit-pro-ochre.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
