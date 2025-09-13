@@ -139,7 +139,7 @@ const updateResume = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to create resume", error: error.message });
+      .json({ message: "Failed to update resume", error: error.message });
   }
 };
 
@@ -182,7 +182,7 @@ const deleteResume = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to create resume", error: error.message });
+      .json({ message: "Failed to delete resume", error: error.message });
   }
 };
 
