@@ -112,7 +112,7 @@ const getResumeById = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to create resume", error: error.message });
+      .json({ message: "Failed to get resume", error: error.message });
   }
 };
 
